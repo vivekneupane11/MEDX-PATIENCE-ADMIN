@@ -1,16 +1,16 @@
-import { Clock, User, MapPin, AlertTriangle, Stethoscope } from 'lucide-react';
+import { AlertTriangle, Clock, MapPin, Stethoscope, User } from 'lucide-react';
 
-interface RequestCardProps {
-  priority: 'high' | 'medium' | 'low';
-  patient: string;
-  type: string;
-  address: string;
-  timeReceived: string;
-  stockStatus: 'available' | 'low' | 'critical';
-  suggestedTech?: string;
-  doctor: string;
-  status: 'pending' | 'validated' | 'rejected';
-}
+// interface RequestCardProps {
+//   priority: 'high' | 'medium' | 'low';
+//   patient: string;
+//   type: string;
+//   address: string;
+//   timeReceived: string;
+//   stockStatus: 'available' | 'low' | 'critical';
+//   suggestedTech?: string;
+//   doctor: string;
+//   status: 'pending' | 'validated' | 'rejected';
+// }
 
 const RequestCard = ({
   priority,
@@ -22,7 +22,7 @@ const RequestCard = ({
   suggestedTech,
   doctor,
   status
-}: RequestCardProps) => {
+}: any) => {
   const priorityColors = {
     high: 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800',
     medium: 'bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800',
@@ -40,14 +40,13 @@ const RequestCard = ({
     validated: 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400',
     rejected: 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
   };
-
   return (
-    <div className={`border rounded-lg p-4 ${priorityColors[priority]}`}>
+    <div className={`border rounded-lg p-4 ${priorityColors[priority as keyof typeof priorityColors]}`}>
       <div className="flex justify-between items-start mb-3">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-gray-900 dark:text-white">{type}</span>
-            <span className={`px-2 py-1 text-xs font-medium rounded-full ${statusColors[status]}`}>
+            <span className={`px-2 py-1 text-xs font-medium rounded-full ${statusColors[status as keyof typeof statusColors]}`}>
               {status === 'pending' ? 'En attente' : status === 'validated' ? 'Validée' : 'Refusée'}
             </span>
           </div>
@@ -57,8 +56,8 @@ const RequestCard = ({
           </div>
         </div>
         <div className="flex items-center">
-          <AlertTriangle className={`w-4 h-4 mr-1 ${stockStatusColors[stockStatus]}`} />
-          <span className={`text-xs ${stockStatusColors[stockStatus]}`}>
+          <AlertTriangle className={`w-4 h-4 mr-1 ${stockStatusColors[stockStatus as keyof typeof stockStatusColors]}`} />
+          <span className={`text-xs ${stockStatusColors[stockStatus as keyof typeof stockStatusColors]}`}>
             {stockStatus === 'available' ? 'Stock OK' : `Stock ${stockStatus}`}
           </span>
         </div>

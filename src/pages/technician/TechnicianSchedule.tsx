@@ -1,19 +1,17 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Calendar as CalendarIcon, 
-  ChevronLeft, 
+import {
+  Calendar as CalendarIcon,
+  ChevronLeft,
   ChevronRight,
   Clock,
-  MapPin,
-  User,
-  Tool,
-  Package2
+  Package2,
+  Wrench
 } from 'lucide-react';
-import Card from '../../components/ui/Card';
+import { useState } from 'react';
 import Badge from '../../components/ui/Badge';
-import { WeeklyCalendar } from './components/WeeklyCalendar';
-import { DailySchedule } from './components/DailySchedule';
+import Card from '../../components/ui/Card';
+// import DailySchedule from './components/DailySchedule';
+// import WeeklyCalendar from './components/WeeklyCalendar';
 
 export default function TechnicianSchedule() {
   const [view, setView] = useState<'calendar' | 'list'>('calendar');
@@ -46,7 +44,7 @@ export default function TechnicianSchedule() {
       color: 'blue'
     },
     { 
-      icon: Tool,
+      icon: Wrench,
       label: 'Temps moyen', 
       value: '1h20', 
       type: 'duration',
@@ -149,13 +147,13 @@ export default function TechnicianSchedule() {
       </Card>
 
       {/* Contenu principal */}
-      <Card className="p-6">
+      {/* <Card className="p-6">
         {view === 'calendar' ? (
           <WeeklyCalendar currentDate={currentDate} />
         ) : (
           <DailySchedule currentDate={currentDate} />
         )}
-      </Card>
+      </Card> */}
     </div>
   );
 }
