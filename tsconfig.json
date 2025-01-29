@@ -20,7 +20,6 @@
       "@/*": ["./src/*"]
     },
     "composite": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noPropertyAccessFromIndexSignature": false
   },
   "include": ["src"],
