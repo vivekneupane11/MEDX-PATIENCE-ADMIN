@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 226.7 57.9% 11.4%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 226.7 57.9% 14.4%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 226.7 57.9% 14.4%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 226.7 57.9% 18.4%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 226.7 57.9% 18.4%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 226.7 57.9% 18.4%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 226.7 57.9% 24.4%;
+    --input: 226.7 57.9% 24.4%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-200 antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+  
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+  
+  h3 {
+    @apply text-xl font-semibold;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-card text-card-foreground border shadow-sm transition-colors duration-200;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg dark:hover:shadow-dark-lg hover:border-border dark:hover:border-dark-border-hover transition-all duration-200;
+  }
+
+  .input {
+    @apply bg-background border border-input ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors duration-200;
+  }
+
+  .button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
+  }
+
+  .button-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors duration-200;
+  }
+
+  .gradient-header {
+    @apply bg-gradient-to-r from-primary to-primary/80 text-primary-foreground transition-colors duration-200;
+  }
+}
+
+/* Optimisations pour les composants tiers */
+.dark {
+  .leaflet-container {
+    @apply bg-dark-bg;
+    filter: brightness(0.8) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+  }
+
+  .leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+  }
+
+  .leaflet-control-attribution {
+    @apply bg-dark-bg/80 text-dark-text-secondary;
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    @apply bg-dark-card text-dark-text-primary;
+  }
+
+  /* Recharts */
+  .recharts-cartesian-grid line {
+    @apply stroke-dark-border;
+  }
+
+  .recharts-text {
+    @apply fill-dark-text-secondary;
+  }
+
+  .recharts-legend-item-text {
+    @apply fill-dark-text-primary;
+  }
+
+  .recharts-tooltip-wrapper {
+    @apply bg-dark-card border-dark-border;
+  }
+
+  /* FullCalendar */
+  .fc {
+    @apply text-dark-text-primary font-sans;
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th,
+  .fc-theme-standard .fc-scrollgrid {
+    @apply border-dark-border;
+  }
+
+  .fc-day-today {
+    @apply bg-dark-bg-secondary/50 !important;
+  }
+
+  .fc-event {
+    @apply border-primary bg-primary/20;
+  }
+}
+
+/* Animations fluides */
+.transition-theme {
+  @apply transition-all duration-200;
+}
